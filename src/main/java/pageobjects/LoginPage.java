@@ -3,7 +3,7 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
     private WebDriver driver;
     private String loginURL = "http://the-internet.herokuapp.com/login";
     private By usernameLocator = By.id("username");
@@ -14,8 +14,8 @@ public class LoginPage {
 
 
     public LoginPage(WebDriver webDriver){
-        this.driver = webDriver;
-        driver.get(loginURL);
+        super(webDriver);
+        visit(loginURL);
     }
 
     public String getURL(){
@@ -24,19 +24,19 @@ public class LoginPage {
 
     public void loginWith(String username, String password){
 
-        driver.findElement(usernameLocator).sendKeys(username);
-        driver.findElement(passwordLocator).sendKeys(password);
-        driver.findElement(submitLocator).click();
+        find(usernameLocator).sendKeys(username);
+        find(passwordLocator).sendKeys(password);
+        find(submitLocator).click();
     }
     public boolean isSuccessDisplayed() {
-        return driver.findElement(successLocator).isDisplayed();
+        return find(successLocator).isDisplayed();
     }
 
     public boolean isErrorDisplayed() {
-        return driver.findElement(errorLocator).isDisplayed();
+        return find(errorLocator).isDisplayed();
     }
 
     public String getErrormessage(){
-        return driver.findElement(errorLocator).getText();
+        return find(errorLocator).getText();
     }
 }
