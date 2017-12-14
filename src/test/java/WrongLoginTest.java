@@ -4,28 +4,21 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Heghine
- * Date: 12/11/17
- * Time: 7:42 PM
- * To change this template use File | Settings | File Templates.
- */
-public class LoginTest {
+public class WrongLoginTest {
     private ChromeDriver driver;
 
     @BeforeMethod
     public void setUp(){
-       System.setProperty("webdriver.chrome.driver", "C:\\dev\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\dev\\chromedriver.exe");
         driver = new ChromeDriver();
     }
 
     @Test
-    public void login(){
-       driver.get("http://the-internet.herokuapp.com/login");
-       driver.findElement(By.id("username")).sendKeys("tomsmith");
-       driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
-       driver.findElement(By.cssSelector("#login button")).click();
+    public void loginFail(){
+        driver.get("http://the-internet.herokuapp.com/login");
+        driver.findElement(By.id("username")).sendKeys("blabla");
+        driver.findElement(By.id("password")).sendKeys("blablabla");
+        driver.findElement(By.cssSelector("#login button")).click();
 
         try {
             Thread.sleep(1000);
@@ -33,11 +26,13 @@ public class LoginTest {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
 
-        assertTrue("Login was not succeed!",
-                driver.findElement(By.cssSelector(".flash.success")).isDisplayed());
-               
-        
-        
+        assertTrue("Your username is invalid!!",
+                driver.findElement(By.cssSelector(".flash.error")).isDisplayed());
+
+
+
+
+
     }
 
     private void assertTrue(String s, boolean displayed) {
@@ -51,5 +46,4 @@ public class LoginTest {
         driver.close();
         driver.quit();
     }
-
 }
