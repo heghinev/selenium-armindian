@@ -1,8 +1,10 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageobjects.LoginPage;
 
 /**
  * Created by IntelliJ IDEA.
@@ -13,19 +15,20 @@ import org.testng.annotations.Test;
  */
 public class LoginTest {
     private ChromeDriver driver;
+    private LoginPage loginPage;
 
     @BeforeMethod
     public void setUp(){
        System.setProperty("webdriver.chrome.driver", "C:\\dev\\chromedriver.exe");
         driver = new ChromeDriver();
+        loginPage = new LoginPage(driver);
     }
 
     @Test
     public void login(){
-       driver.get("http://the-internet.herokuapp.com/login");
-       driver.findElement(By.id("username")).sendKeys("tomsmith");
-       driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
-       driver.findElement(By.cssSelector("#login button")).click();
+       loginPage.loginWith("tomsmith", "SuperSecretPassword!");
+
+       // if Enter is clicked on driver.findElement(By.id("password")).sendKeys(Keys.RETURN);
 
         try {
             Thread.sleep(1000);
@@ -33,8 +36,7 @@ public class LoginTest {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
 
-        assertTrue("Login was not succeed!",
-                driver.findElement(By.cssSelector(".flash.success")).isDisplayed());
+        assertTrue("Login was not succeed!", loginPage.isSuccessDisplayed());
                
         
         
