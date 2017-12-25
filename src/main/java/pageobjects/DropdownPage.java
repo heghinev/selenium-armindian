@@ -1,6 +1,7 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -45,5 +46,15 @@ public class DropdownPage extends BasePage {
         }
         return null;
     }
+
+    public void forceAlert(){
+        ((JavascriptExecutor) driver).executeScript("alert(\"Hello! i am an alert box!\")");
+    }
+
+    public void closeAlert(){
+        driver.switchTo().alert().accept();
+    }
+
+    //http://the-internet.herokuapp.com/javascript_alerts bolor 3 caseri ahmar(including OK/Cancel), grel arandzin window-nerum
 
 }

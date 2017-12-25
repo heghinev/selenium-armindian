@@ -22,6 +22,12 @@ public class DropDownTest {
         Assert.assertEquals(dropdownPage.getSelectedOption(), "Option 1");
     }
 
+    @Test
+    public void dropdownSelect(){
+        dropdownPage.forceAlert();
+        dropdownPage.closeAlert();
+    }
+
 
     @AfterMethod
     public void tearDown() {
