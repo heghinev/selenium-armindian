@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class NewWindowPage extends BasePage {
+       private By text = By.tagName("h3");
 
        public NewWindowPage(WebDriver webDriver) {
         super(webDriver);
@@ -24,5 +25,13 @@ public class NewWindowPage extends BasePage {
 
     public void switchToWindow(int index){
          driver.switchTo().window(getAllWindows()[index].toString());
+    }
+
+    public boolean isTextDisplayed(){
+           try {
+               return find(text).isDisplayed();
+           }catch (Exception e){
+           }
+        return false;
     }
 }

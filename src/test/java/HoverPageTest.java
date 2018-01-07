@@ -1,30 +1,30 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.DropdownPage;
-import pageobjects.NewWindowPage;
+import pageobjects.HoverPage;
 
-public class NewWindowTest {
+public class HoverPageTest {
     private ChromeDriver driver;
-    private NewWindowPage newWindowPage;
+    private HoverPage hoverPage;
 
     @BeforeMethod
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\dev\\chromedriver.exe");
         driver = new ChromeDriver();
-        newWindowPage = new NewWindowPage(driver);
+        hoverPage = new HoverPage(driver);
     }
 
     @Test
-    public void openNewWindow(){
-        newWindowPage.clickLink();
-        newWindowPage.switchToWindow(0);
-
-        Assert.assertTrue(newWindowPage.isTextDisplayed(), "Text is not displayed!");
+    public void hoverText(){
+        Assert.assertTrue(hoverPage.isHeaderInvisible(), "Header is not displayed");
+        hoverPage.hoverAvatar();
+        Assert.assertTrue(hoverPage.isHeaderDisplayed(), "Header is displayed");
+        Assert.assertTrue(hoverPage.getFinish().getText().contains("name: user1"));
     }
-
 
 
     @AfterMethod

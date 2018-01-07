@@ -3,29 +3,28 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageobjects.DropdownPage;
-import pageobjects.NewWindowPage;
+import pageobjects.JSConfirmCancelPage;
+import pageobjects.JSConfirmOKPage;
 
-public class NewWindowTest {
+public class JSConfirmCancelTest {
     private ChromeDriver driver;
-    private NewWindowPage newWindowPage;
+    private JSConfirmCancelPage jsConfirmCancelPage;
+
+
 
     @BeforeMethod
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\dev\\chromedriver.exe");
         driver = new ChromeDriver();
-        newWindowPage = new NewWindowPage(driver);
+        jsConfirmCancelPage = new JSConfirmCancelPage(driver);
     }
 
     @Test
-    public void openNewWindow(){
-        newWindowPage.clickLink();
-        newWindowPage.switchToWindow(0);
-
-        Assert.assertTrue(newWindowPage.isTextDisplayed(), "Text is not displayed!");
+    public void acceptJSAlert(){
+        jsConfirmCancelPage.openJSAlert();
+        jsConfirmCancelPage.cancelAlert();
+        Assert.assertTrue(jsConfirmCancelPage.getResultText().getText().contains("You clicked: Cancel"));
     }
-
-
 
     @AfterMethod
     public void tearDown() {
@@ -33,5 +32,5 @@ public class NewWindowTest {
         driver.quit();
     }
 
-
 }
+

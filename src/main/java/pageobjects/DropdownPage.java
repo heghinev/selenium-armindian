@@ -12,9 +12,6 @@ public class DropdownPage extends BasePage {
     //private By option1 = By.tagName(String "option");
 
 
-
-
-
     public DropdownPage(WebDriver webDriver) {
         super(webDriver);
         visit("http://the-internet.herokuapp.com/dropdown");
@@ -55,6 +52,7 @@ public class DropdownPage extends BasePage {
         driver.switchTo().alert().accept();
     }
 
-    //http://the-internet.herokuapp.com/javascript_alerts bolor 3 caseri ahmar(including OK/Cancel), grel arandzin window-nerum
-
+    /*http://the-internet.herokuapp.com/javascript_alerts bolor 3 caseri ahmar(including OK/Cancel), grel arandzin window-nerum
+    New window-i mej stugel texte
+*/
 }

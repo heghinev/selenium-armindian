@@ -3,29 +3,29 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageobjects.DropdownPage;
-import pageobjects.NewWindowPage;
+import pageobjects.JSAlertPage;
+import pageobjects.JSPromptOKPage;
 
-public class NewWindowTest {
+public class JSPromptOKTest {
     private ChromeDriver driver;
-    private NewWindowPage newWindowPage;
+    private JSPromptOKPage jsPromptOKPage;
+
+
 
     @BeforeMethod
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\dev\\chromedriver.exe");
         driver = new ChromeDriver();
-        newWindowPage = new NewWindowPage(driver);
+        jsPromptOKPage = new JSPromptOKPage(driver);
     }
 
     @Test
-    public void openNewWindow(){
-        newWindowPage.clickLink();
-        newWindowPage.switchToWindow(0);
-
-        Assert.assertTrue(newWindowPage.isTextDisplayed(), "Text is not displayed!");
+    public void acceptJSAlert(){
+        jsPromptOKPage.openJSAlert();
+        jsPromptOKPage.typeText();
+        jsPromptOKPage.acceptAlert();
+        Assert.assertTrue(jsPromptOKPage.getResultText().getText().contains("You entered:"));
     }
-
-
 
     @AfterMethod
     public void tearDown() {
@@ -33,5 +33,5 @@ public class NewWindowTest {
         driver.quit();
     }
 
-
 }
+
