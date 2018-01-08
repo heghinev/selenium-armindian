@@ -5,13 +5,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import static setup.DriverSetup.getDriver;
+
 public class JSPromptOKPage extends BasePage {
     private By alertButton = By.xpath("//button[contains(text(),'Click for JS Prompt')]");
     private By resultText = By.id("result");
 
-    public JSPromptOKPage(WebDriver webDriver){
-        super(webDriver);
-        visit("http://the-internet.herokuapp.com/javascript_alerts");
+    public JSPromptOKPage(){
+        super(getDriver());
+        visit(getUrl());
+    }
+
+    public String getUrl(){
+        return BASE_URL + "/javascript_alerts";
     }
 
     public void openJSAlert(){
