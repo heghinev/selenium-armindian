@@ -9,9 +9,8 @@ import setup.DriverSetup;
 import static setup.DriverSetup.getDriver;
 import static setup.DriverSetup.quitDriver;
 
-public class JSPromptOKTest {
+public class JSPromptOKTest extends BaseTest {
     private JSPromptOKPage jsPromptOKPage;
-
 
 
     @BeforeMethod
@@ -25,11 +24,6 @@ public class JSPromptOKTest {
         jsPromptOKPage.typeText();
         jsPromptOKPage.acceptAlert();
         Assert.assertTrue(jsPromptOKPage.getResultText().getText().contains("You entered:"));
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        quitDriver();
     }
 
 }

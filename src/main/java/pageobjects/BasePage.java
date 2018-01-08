@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
     protected WebDriver driver;
+    public static final String BASE_URL = System.getProperty("selenium.url", "http://the-internet.herokuapp.com");
 
     public BasePage(WebDriver webdriver) {
         this.driver = webdriver;
