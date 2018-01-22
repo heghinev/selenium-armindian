@@ -23,6 +23,16 @@ public class DragAndDropPage extends BasePage {
         visit(getUrl());
     }
 
+    @Override
+    protected void load() {
+
+    }
+
+    @Override
+    protected void isLoaded() throws Error {
+        waitForElement(source);
+    }
+
     public String getUrl(){
         //return BASE_URL + "/drag_and_drop";
         return "http://jqueryui.com/resources/demos/droppable/default.html";
