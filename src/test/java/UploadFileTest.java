@@ -1,3 +1,4 @@
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.annotations.TestInstance;
 import pageobjects.UploadFilePage;
@@ -10,6 +11,7 @@ import java.nio.file.Path;
 import static org.testng.Assert.assertTrue;
 
 public class UploadFileTest extends BaseTest{
+
     @Test
     public void uploadFile() throws IOException {
         Path filePath = Files.createTempFile("testFile", ".txt");

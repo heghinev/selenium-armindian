@@ -7,7 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import setup.WaitHelper;
 
+import static setup.DriverSetup.getDriver;
 
 
 public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableComponent<T> {
@@ -61,30 +63,42 @@ public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableC
         type(find(cssSelector), text);
     }
 
-    public boolean isDisplayed(WebElement element, Integer timeout) {
+    public boolean isDisplayed(WebElement element) {
+        log.info("Checking element visibility " + element.toString());
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeout);
-            wait.until(ExpectedConditions.visibilityOf(element));
-        } catch (TimeoutException e) {
+            return element.isDisplayed();
+        } catch (NoSuchElementException e) {
             return false;
         }
-        return true;
     }
 
-    public boolean isElementInvisible(WebElement element, Integer timeout) {
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, timeout);
-            wait.until(ExpectedConditions.invisibilityOf(element));
-        } catch (TimeoutException e) {
-            return false;
-        }
-        return true;
+    public boolean isDisplayed(By locator) {
+        return isDisplayed(find(locator));
+    }
+    public boolean isDisplayed(String cssSelector) {
+        return isDisplayed(find(cssSelector));
     }
 
-    public WebElement waitForElement(WebElement element){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        return wait.until(ExpectedConditions.visibilityOf(element));
-    }
+    /*public boolean isDisplayed(WebElement element, Integer timeout) {
+            try {
+                WebDriverWait wait = new WebDriverWait(driver, timeout);
+                wait.until(ExpectedConditions.visibilityOf(element));
+            } catch (TimeoutException e) {
+                return false;
+            }
+            return true;
+        }*/
+
+        /*public boolean isElementInvisible(WebElement element, Integer timeout) {
+            try {
+                WebDriverWait wait = new WebDriverWait(driver, timeout);
+                wait.until(ExpectedConditions.invisibilityOf(element));
+            } catch (TimeoutException e) {
+                return false;
+            }
+            return true;
+    }*/
+
 
     public abstract  String getUrl();
 

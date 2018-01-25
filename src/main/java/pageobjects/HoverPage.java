@@ -4,15 +4,25 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import setup.WaitHelper;
 
 import java.util.List;
 
+import static setup.DriverSetup.getDriver;
+
 public class HoverPage extends BasePage {
+    @FindBy(className = "figcaption")
+    private WebElement figcaption;
 
 
-    public HoverPage(WebDriver webDriver) {
-        super(webDriver);
-        visit("http://the-internet.herokuapp.com/hovers");
+    public HoverPage() {
+        super(getDriver());
+        visit(getUrl());
+    }
+
+    public String getUrl() {
+        return BASE_URL + "/hovers";
     }
 
     public void hoverElement(WebElement element) {
@@ -25,14 +35,21 @@ public class HoverPage extends BasePage {
     }
 
     public boolean isHeaderDisplayed() {
-        return isDisplayed(find(By.className("figcaption")), 5);
+        return isDisplayed(figcaption);
     }
 
-    public boolean isHeaderInvisible() {
-        return isElementInvisible(find(By.className("figcaption")), 5);
+    public boolean isHeaderNotDisplayed() {
+        try {
+            WaitHelper.getWait().waitForElementNotVisible(figcaption);
+            return true;
+        } catch (Error e) {
+            return false;
+        }
     }
 
     public WebElement getFinish() {
-        return find(By.className("figure"));
-    }
+            return find(By.className("figure"));
+        }
+
+
 }

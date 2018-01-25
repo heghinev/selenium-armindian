@@ -6,17 +6,13 @@ import org.testng.annotations.Test;
 import pageobjects.JSConfirmCancelPage;
 import pageobjects.JSConfirmOKPage;
 
-public class JSConfirmCancelTest {
-    private ChromeDriver driver;
+public class JSConfirmCancelTest extends BaseTest{
     private JSConfirmCancelPage jsConfirmCancelPage;
-
 
 
     @BeforeMethod
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\dev\\chromedriver.exe");
-        driver = new ChromeDriver();
-        jsConfirmCancelPage = new JSConfirmCancelPage(driver);
+        jsConfirmCancelPage = new JSConfirmCancelPage();
     }
 
     @Test
@@ -26,11 +22,6 @@ public class JSConfirmCancelTest {
         Assert.assertTrue(jsConfirmCancelPage.getResultText().getText().contains("You clicked: Cancel"));
     }
 
-    @AfterMethod
-    public void tearDown() {
-        driver.close();
-        driver.quit();
-    }
 
 }
 

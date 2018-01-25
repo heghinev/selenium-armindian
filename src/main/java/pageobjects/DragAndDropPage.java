@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import setup.WaitHelper;
 
 import static setup.DriverSetup.getDriver;
 
@@ -30,7 +31,9 @@ public class DragAndDropPage extends BasePage {
 
     @Override
     protected void isLoaded() throws Error {
-        waitForElement(source);
+        WaitHelper.getWait()
+                .waitForElementToBeVisible(source)
+                .waitForElementToBeClickable(source);
     }
 
     public String getUrl(){

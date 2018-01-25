@@ -4,12 +4,18 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import static setup.DriverSetup.getDriver;
 
 public class JSPromptOKPage extends BasePage {
-    private By alertButton = By.xpath("//button[contains(text(),'Click for JS Prompt')]");
-    private By resultText = By.id("result");
+    @FindBy(xpath = "//button[contains(text(),'Click for JS Prompt')]")
+    private WebElement alertButton;
+    @FindBy(id = "result")
+    private WebElement resultText;
+
+    /*private By alertButton = By.xpath("//button[contains(text(),'Click for JS Prompt')]");
+    private By resultText = By.id("result");*/
 
     public JSPromptOKPage(){
         super(getDriver());
@@ -34,6 +40,6 @@ public class JSPromptOKPage extends BasePage {
     }
 
     public WebElement getResultText() {
-        return find(resultText);
+        return resultText;
     }
 }

@@ -6,16 +6,13 @@ import org.testng.annotations.Test;
 import pageobjects.DropdownPage;
 import pageobjects.JSAlertPage;
 
-public class JSAlertTest {
+public class JSAlertTest extends BaseTest{
 
-    private ChromeDriver driver;
     private JSAlertPage jsAlertPage;
 
     @BeforeMethod
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\dev\\chromedriver.exe");
-        driver = new ChromeDriver();
-        jsAlertPage = new JSAlertPage(driver);
+        jsAlertPage = new JSAlertPage();
     }
 
     @Test
@@ -27,9 +24,5 @@ public class JSAlertTest {
         Assert.assertTrue(jsAlertPage.getResultText().getText().contains("You successfuly clicked an alert"));
     }
 
-    @AfterMethod
-    public void tearDown() {
-        driver.close();
-        driver.quit();
-    }
+
 }

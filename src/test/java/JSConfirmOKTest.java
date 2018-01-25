@@ -6,17 +6,14 @@ import org.testng.annotations.Test;
 import pageobjects.JSAlertPage;
 import pageobjects.JSConfirmOKPage;
 
-public class JSConfirmOKTest {
-    private ChromeDriver driver;
+public class JSConfirmOKTest extends BaseTest {
     private JSConfirmOKPage jsConfirmOKPage;
 
 
 
     @BeforeMethod
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\dev\\chromedriver.exe");
-        driver = new ChromeDriver();
-        jsConfirmOKPage = new JSConfirmOKPage(driver);
+        jsConfirmOKPage = new JSConfirmOKPage();
     }
 
     @Test
@@ -26,11 +23,6 @@ public class JSConfirmOKTest {
         Assert.assertTrue(jsConfirmOKPage.getResultText().getText().contains("You clicked: Ok"));
     }
 
-    @AfterMethod
-    public void tearDown() {
-        driver.close();
-        driver.quit();
-    }
 
 }
 

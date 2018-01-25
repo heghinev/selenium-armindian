@@ -15,12 +15,14 @@ public class DriverSetup {
                     String chromeDriverLocation = System.getProperty("selenium.chromedriver", "C:\\dev\\chromedriver.exe");
                     System.setProperty("webdriver.chrome.driver", chromeDriverLocation);
                     driver = new ChromeDriver();
+                    driver.manage().window().maximize();
                     break;
 
                 case "firefox":
                     String firefoxDriverLocation = System.getProperty("selenium.geckodriver", "C:\\dev\\geckodriver.exe");
                     System.setProperty("webdriver.gecko.driver", firefoxDriverLocation);
                     driver = new FirefoxDriver();
+                    driver.manage().window().maximize();
                     break;
             }
        }
@@ -29,9 +31,21 @@ public class DriverSetup {
 
   public static void quitDriver(){
             if(driver != null){
-                driver.close();
-                driver.quit();
-                driver =null;
+                if (BROWSER.equals("firefox")){
+                    driver.close();
+                    driver = null;
+                }else if(BROWSER.equals("chrome")){
+                    driver.close();
+                    driver.quit();
+                    driver = null;
+                }
             }
         }
 }
+
+
+/*
+mvn install -DskipTests
+mvn test -Dselenium.browser=firefox
+mvn test -piti ashxati chrome
+mvn test -Dselenium.browser=chrome*/

@@ -5,15 +5,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.DynamicLoadPage;
 
-public class DynamicLoadPageTest {
-    private ChromeDriver driver;
+public class DynamicLoadPageTest extends BaseTest {
     private DynamicLoadPage dynamicLoadPage;
 
         @BeforeMethod
         public void setUp() {
-            System.setProperty("webdriver.chrome.driver", "C:\\dev\\chromedriver.exe");
-            driver = new ChromeDriver();
-            dynamicLoadPage = new DynamicLoadPage(driver);
+           dynamicLoadPage = new DynamicLoadPage();
         }
 
         @Test
@@ -24,14 +21,5 @@ public class DynamicLoadPageTest {
             Assert.assertTrue(dynamicLoadPage.isFinishDisplayed(), "Blabla");
             Assert.assertEquals(dynamicLoadPage.getFinish().getText(),"Hello World!");
         }
-
-
-
-        @AfterMethod
-        public void tearDown() {
-            driver.close();
-            driver.quit();
-        }
-
 
     }

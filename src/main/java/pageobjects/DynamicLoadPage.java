@@ -3,15 +3,33 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import setup.WaitHelper;
+
+import static setup.DriverSetup.getDriver;
 
 public class DynamicLoadPage extends BasePage {
-    private By startButton = By.cssSelector("#start button");
-    private By finishText = By.id("finish");
-    private By loadingText = By.id("loading");
+    @FindBy(css = "#start button")
+    private WebElement startButton;
+    @FindBy(id = "finish")
+    private WebElement finishText;
+    @FindBy(id = "loading")
+    private WebElement loadingText;
 
-    public DynamicLoadPage(WebDriver webDriver) {
-        super(webDriver);
-        visit("http://the-internet.herokuapp.com/dynamic_loading/1");
+
+
+    /*private By startButton = By.cssSelector("#start button");
+    private By finishText = By.id("finish");
+    private By loadingText = By.id("loading");*/
+
+    public DynamicLoadPage() {
+        super(getDriver());
+        visit(getUrl());
+    }
+
+    public String getUrl(){
+        return BASE_URL + "/dynamic_loading/1";
     }
 
     public void clickStart(){
@@ -19,18 +37,45 @@ public class DynamicLoadPage extends BasePage {
     }
 
     public boolean isFinishDisplayed(){
-       return isDisplayed(find(finishText), 10);
+        try{
+            WaitHelper.getWait().waitForElementToBeVisible(finishText);
+            return true;
+        }catch(Error e){
+            return false;
+        }
     }
 
     public boolean isLoadingDisplayed(){
-        return isDisplayed(find(loadingText), 10);
+        try{
+            WaitHelper.getWait().waitForElementToBeVisible(loadingText);
+            return true;
+        }catch(Error e){
+            return false;
+        }
     }
 
     public boolean isLoadingInvisible(){
-        return isElementInvisible(find(loadingText), 10);
+        try{
+            WaitHelper.getWait().waitForElementToBeVisible(loadingText);
+            return true;
+        }catch(Error e){
+            return false;
+        }
     }
 
     public WebElement getFinish(){
-        return find(finishText);
+        return finishText;
+    }
+
+    @Override
+    protected void load() {
+
+    }
+
+    @Override
+    protected void isLoaded() throws Error {
+        WaitHelper.getWait()
+                .waitForElementToBeVisible(startButton)
+                .waitForElementToBeClickable(startButton);
     }
 }

@@ -1,4 +1,3 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -6,26 +5,21 @@ import org.testng.annotations.Test;
 import pageobjects.LoginPage;
 
 public class WrongLoginTest {
-    private ChromeDriver driver;
     private LoginPage wrongLoginPage;
 
 
     @BeforeMethod
-    public void setUp(){
-        System.setProperty("webdriver.chrome.driver", "C:\\dev\\chromedriver.exe");
-        driver = new ChromeDriver();
-        wrongLoginPage = new LoginPage(driver);
+    public void setUp() {
+        wrongLoginPage = new LoginPage();
     }
 
     @Test
-    public void loginFail() throws InterruptedException{
+    public void loginFail() throws InterruptedException {
         wrongLoginPage.loginWith("bla", "blabla!");
-           assertTrue("Login was not succeed!",
-                   wrongLoginPage.isErrorDisplayed());
-           assertTrue("Error message is not correct!",
-                   wrongLoginPage.getErrormessage().contains("Your username is invalid!"));
-
-
+        assertTrue("Login was not succeed!",
+                wrongLoginPage.isErrorDisplayed());
+        assertTrue("Error message is not correct!",
+                wrongLoginPage.getErrormessage().contains("Your username is invalid!"));
 
 
     }
@@ -35,10 +29,4 @@ public class WrongLoginTest {
     }
 
 
-
-    @AfterMethod
-    public void tearDown(){
-        driver.close();
-        driver.quit();
-    }
 }

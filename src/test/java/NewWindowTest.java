@@ -6,15 +6,12 @@ import org.testng.annotations.Test;
 import pageobjects.DropdownPage;
 import pageobjects.NewWindowPage;
 
-public class NewWindowTest {
-    private ChromeDriver driver;
+public class NewWindowTest extends BaseTest {
     private NewWindowPage newWindowPage;
 
     @BeforeMethod
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\dev\\chromedriver.exe");
-        driver = new ChromeDriver();
-        newWindowPage = new NewWindowPage(driver);
+        newWindowPage = new NewWindowPage();
     }
 
     @Test
@@ -23,14 +20,6 @@ public class NewWindowTest {
         newWindowPage.switchToWindow(0);
 
         Assert.assertTrue(newWindowPage.isTextDisplayed(), "Text is not displayed!");
-    }
-
-
-
-    @AfterMethod
-    public void tearDown() {
-        driver.close();
-        driver.quit();
     }
 
 

@@ -5,15 +5,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageobjects.DropdownPage;
 
-public class DropDownTest {
-    private ChromeDriver driver;
+public class DropDownTest extends BaseTest {
     private DropdownPage dropdownPage;
 
     @BeforeMethod
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\dev\\chromedriver.exe");
-        driver = new ChromeDriver();
-        dropdownPage = new DropdownPage(driver);
+       dropdownPage = new DropdownPage();
+       //dropdownPage = (DropdownPage) new DropdownPage().get(); ete uzum es LC-e ashxati
     }
 
     @Test
@@ -27,13 +25,5 @@ public class DropDownTest {
         dropdownPage.forceAlert();
         dropdownPage.closeAlert();
     }
-
-
-    @AfterMethod
-    public void tearDown() {
-        driver.close();
-        driver.quit();
-    }
-
 
 }

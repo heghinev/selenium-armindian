@@ -4,15 +4,25 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class NewWindowPage extends BasePage {
-       private By text = By.tagName("h3");
+import static setup.DriverSetup.getDriver;
 
-       public NewWindowPage(WebDriver webDriver) {
-        super(webDriver);
-        visit("http://the-internet.herokuapp.com/windows");
+public class NewWindowPage extends BasePage {
+    @FindBy(tagName = "h3")
+    private WebElement text;
+
+    //private By text = By.tagName("h3");
+
+       public NewWindowPage() {
+        super(getDriver());
+        visit(getUrl());
+    }
+
+    public String getUrl(){
+        return BASE_URL + "/windows";
     }
 
     public void clickLink(){
@@ -29,7 +39,7 @@ public class NewWindowPage extends BasePage {
 
     public boolean isTextDisplayed(){
            try {
-               return find(text).isDisplayed();
+               return text.isDisplayed();
            }catch (Exception e){
            }
         return false;

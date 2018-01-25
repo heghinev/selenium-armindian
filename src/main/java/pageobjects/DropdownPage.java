@@ -4,21 +4,30 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
+import static setup.DriverSetup.getDriver;
+
 public class DropdownPage extends BasePage {
-    private By dropdown = By.id("dropdown");
+    @FindBy(id = "dropdown")
+    private WebElement dropdown;
+   // private By dropdown = By.id("dropdown");
     //private By option1 = By.tagName(String "option");
 
 
-    public DropdownPage(WebDriver webDriver) {
-        super(webDriver);
-        visit("http://the-internet.herokuapp.com/dropdown");
+    public DropdownPage() {
+        super(getDriver());
+        visit(getUrl());
+    }
+
+    public String getUrl(){
+        return BASE_URL + "/dropdown";
     }
 
     public WebElement getDropdown(){
-        return find(dropdown);
+        return dropdown;
     }
 
     public List<WebElement> getDropdownOptions(){

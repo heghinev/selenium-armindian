@@ -3,14 +3,26 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import static setup.DriverSetup.getDriver;
 
 public class JSConfirmOKPage extends BasePage {
-    private By alertButton = By.xpath("//button[contains(text(),'Click for JS Confirm')]");
-    private By resultText = By.id("result");
+    @FindBy(xpath = "//button[contains(text(),'Click for JS Confirm')]")
+    private WebElement alertButton;
+    @FindBy(id = "result")
+    private WebElement resultText;
 
-    public JSConfirmOKPage(WebDriver webDriver){
-        super(webDriver);
-        visit("http://the-internet.herokuapp.com/javascript_alerts");
+    /*private By alertButton = By.xpath("//button[contains(text(),'Click for JS Confirm')]");
+    private By resultText = By.id("result");*/
+
+    public JSConfirmOKPage(){
+        super(getDriver());
+        visit(getUrl());
+    }
+
+    public String getUrl(){
+        return BASE_URL + "/javascript_alerts";
     }
 
     public void openJSAlert(){
@@ -22,6 +34,6 @@ public class JSConfirmOKPage extends BasePage {
     }
 
     public WebElement getResultText() {
-        return find(resultText);
+        return resultText;
     }
 }
