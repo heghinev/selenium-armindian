@@ -18,7 +18,6 @@ public class JSPromptOKPage extends BasePage {
     private By resultText = By.id("result");*/
 
     public JSPromptOKPage(){
-        super(getDriver());
         visit(getUrl());
     }
 

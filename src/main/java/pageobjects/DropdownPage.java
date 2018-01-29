@@ -18,7 +18,6 @@ public class DropdownPage extends BasePage {
 
 
     public DropdownPage() {
-        super(getDriver());
         visit(getUrl());
     }
 

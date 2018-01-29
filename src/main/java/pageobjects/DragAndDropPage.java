@@ -20,7 +20,6 @@ public class DragAndDropPage extends BasePage {
     private By textB = By.cssSelector("#column-b.header");
 */
     public DragAndDropPage(){
-        super(getDriver());
         visit(getUrl());
     }
 

@@ -14,7 +14,6 @@ public class UploadFilePage extends BasePage {
     private WebElement uploadedSection;
 
     public UploadFilePage(){
-        super(getDriver());
         visit(getUrl());
     }
 

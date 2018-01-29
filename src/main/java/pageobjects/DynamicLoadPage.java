@@ -24,7 +24,6 @@ public class DynamicLoadPage extends BasePage {
     private By loadingText = By.id("loading");*/
 
     public DynamicLoadPage() {
-        super(getDriver());
         visit(getUrl());
     }
 

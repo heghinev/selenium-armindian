@@ -17,11 +17,8 @@ public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableC
     protected WebDriver driver;
     public static final String BASE_URL = System.getProperty("selenium.url", "http://the-internet.herokuapp.com");
 
-    public BasePage(WebDriver webdriver) {
-        this.driver = webdriver;
-    }
-
     public BasePage() {
+        this.driver = getDriver();
     }
 
     public void visit(String url) {

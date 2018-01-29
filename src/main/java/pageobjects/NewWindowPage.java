@@ -17,7 +17,6 @@ public class NewWindowPage extends BasePage {
     //private By text = By.tagName("h3");
 
        public NewWindowPage() {
-        super(getDriver());
         visit(getUrl());
     }
 

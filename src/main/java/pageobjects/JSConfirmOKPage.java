@@ -17,7 +17,6 @@ public class JSConfirmOKPage extends BasePage {
     private By resultText = By.id("result");*/
 
     public JSConfirmOKPage(){
-        super(getDriver());
         visit(getUrl());
     }
 

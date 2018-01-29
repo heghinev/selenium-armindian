@@ -27,7 +27,6 @@ public class LoginPage extends BasePage {
 
 
     public LoginPage() {
-        super(getDriver());
         visit(getUrl());
     }
 

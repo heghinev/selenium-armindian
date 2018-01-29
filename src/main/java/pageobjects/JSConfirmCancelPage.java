@@ -17,7 +17,6 @@ public class JSConfirmCancelPage extends BasePage {
     //private By resultText = By.id("result");
 
     public JSConfirmCancelPage(){
-        super(getDriver());
         visit(getUrl());
     }
 

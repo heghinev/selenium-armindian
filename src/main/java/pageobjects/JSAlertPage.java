@@ -18,7 +18,6 @@ public class JSAlertPage extends BasePage {
     //private By resultText = By.id("result");
 
     public JSAlertPage(){
-        super(getDriver());
         visit(getUrl());
     }
 
